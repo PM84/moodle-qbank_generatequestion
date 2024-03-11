@@ -1,0 +1,72 @@
+<div>
+  <div class="form-group row">
+    <label for="qbank_qgen_qtype" class="col-sm-3 col-form-label">{{#str}} whichquestiontype , qbank_generatequestion{{/str}}</label>
+    <div class="col-sm-9">
+      <select class="form-control form-control-lg qbank_generatequestion_guidequestions" required id="qbank_qgen_qtype">
+        <option value="">{{#str}} please_select, qbank_generatequestion {{/str}}</option>
+        {{#qtypes}}
+        <option value="{{shortname}}">{{name}}</option>
+        {{/qtypes}}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="qbank_qgen_mathequation" class="col-sm-3 col-form-label">
+      {{#str}} mathequations , qbank_generatequestion{{/str}}
+    </label>
+    <div class="col-sm-9">
+      <select class="form-control form-control-lg qbank_generatequestion_guidequestions" id="qbank_qgen_mathequation">
+        <option value="0">{{#str}} no {{/str}}</option>
+        <option value="1">{{#str}} yes {{/str}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="qbank_qgen_qtitle" class="col-sm-3 col-form-label">
+      {{#str}} question_title_help , qbank_generatequestion{{/str}}
+    </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control qbank_generatequestion_guidequestions"  required  id="qbank_qgen_qtitle">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="qbank_qgen_question" class="col-sm-3 col-form-label">{{#str}} question_help , qbank_generatequestion{{/str}}</label>
+    <div class="col-sm-9">
+      <textarea class="form-control qbank_generatequestion_guidequestions"  required  id="qbank_qgen_question" rows="3"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="qbank_qgen_prompt">{{#str}} prompt , qbank_generatequestion{{/str}}</label>
+    <textarea class="form-control" id="qbank_qgen_prompt" rows="3"></textarea>
+  </div>
+
+  <button class="btn btn-primary" id="qbank_qgen_start"> {{#str}} generate_question , qbank_generatequestion {{/str}}</button>
+  <hr>
+
+  <div class="hidden" id="qbank_qgen_result">
+    <form method='POST'>
+      <div class="form-group">
+        <label for="selectcategory">{{#str}} select_category , qbank_generatequestion{{/str}}</label>
+        <select class="form-control" id="selectcategory" name='importcat'>
+          <option>{{#str}} please_select, qbank_generatequestion{{/str}}</option>
+          {{#categories}}
+          <option value='{{qcatid_context}}'>{{catname}}</option>
+          {{/categories}}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="qbank_qgen_questionxmlresult">{{#str}} xml_response , qbank_generatequestion{{/str}}</label>
+        <textarea class="form-control" id="qbank_qgen_questionxmlresult" name="qestionxml" rows="3"></textarea>
+      </div>
+      <button type="submit" name="action" value='createquestion' class="btn btn-primary"> {{#str}} accept_and_import , qbank_generatequestion {{/str}}</button>
+  </div>
+  </form>
+</div>
+
+{{#js}}
+require(['qbank_generatequestion/generate_question'], (module) => module.init());
+{{/js}}
